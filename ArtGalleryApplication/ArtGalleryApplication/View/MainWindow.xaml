@@ -1,0 +1,86 @@
+﻿<Window x:Class="ArtGalleryApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArtGalleryApplication"
+        mc:Ignorable="d" Background="#7a7253"
+ Title="Картинная галерея: Авторизация" Height="500" Width="450">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label
+            Margin="0,50,0,0"
+            FontSize="32"
+            FontFamily="Times New Roman"
+            Foreground="#4f3b2f"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Content="Картинная галерея"/>
+
+        <Label
+            Margin="10,10,0,0"
+            Grid.Row="1"
+            Content="Введите логин:"
+            FontFamily="Times New Roman"
+            Foreground="#4f3b2f"/>
+
+        <TextBox Text="{Binding Login}"
+                 Height="32"
+                 Margin="10"
+                 Grid.Row="2"/>
+
+        <Label  Margin="10"
+            Grid.Row="3"
+            Content="Введите пароль:"
+                FontFamily="Times New Roman"
+            Foreground="#4f3b2f"/>
+
+        <PasswordBox Name="pswPassword"
+                     Height="32"
+                     Margin="10,10,0,0"
+                     Grid.Row="4"/>
+
+        <Button
+            
+            Name="btnAuth"
+            Click="buttonAutorase_Click"
+            Grid.Row="5"
+            Height="32"
+            Width="90"
+          
+            Margin="0,10,10,0"
+            HorizontalAlignment="Right" VerticalAlignment="Top"
+            Style="{DynamicResource EllipseButton}"
+            Content="Войти"/>
+
+     <!--   <Label 
+            Content="Нет аккаунта? Зарегестрируйтесь!"
+            Grid.Row="5"
+            Margin="125,52,129,108"
+            />
+
+
+        <Button
+            Content="Регистрация"
+            Grid.Row="5"
+           Height="32" Width="150"
+             Background="#b5aa84" Margin="150,76,150,76"/>
+
+        <Button Content="Войти как гость"
+                Grid.Row="5"
+                Margin="150,90,150,0"
+                 Background="#b5aa84"
+                Height="32" Width="150"/> -->
+
+    </Grid>
+</Window>
+<!--  Content="{Binding BtnDesc}"-->

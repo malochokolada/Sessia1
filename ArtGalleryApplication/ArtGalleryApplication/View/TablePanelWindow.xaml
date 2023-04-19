@@ -1,0 +1,82 @@
+﻿<Window x:Class="ArtGalleryApplication.View.TablePanelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArtGalleryApplication.View" xmlns:viewmodel="clr-namespace:ArtGalleryApplication.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ApplicationViewModel}"
+        mc:Ignorable="d" 
+        Title="TablePanelWindow" Height="450" Width="900">
+
+    <Grid Background="#ab9a84">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Button Name="btnAddNewInfo" 
+            Content="Добавить новую информацию"
+            Width="200"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+             Grid.Column="1" Click="btnAddNewInfo_Click"
+                Style="{DynamicResource EllipseButton}"/>
+
+        <Button  Name="btnEditInfo" Grid.Column="2"
+            Content="Изменить информацию"
+            Width="180"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Style="{DynamicResource EllipseButton}"/>
+
+        <Button  Name="btnDeleteInfo" Grid.Column="3"
+            Content="Удалить информацию"
+            
+            Width="150"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Style="{DynamicResource EllipseButton}"/>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Background="#6e5b50">
+            <TabControl>
+                <TabItem Header="PieceOfArt">
+                    <DataGrid ItemsSource="{Binding PieceOfArts}" IsReadOnly="True"
+                          AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Картина" Binding="{Binding Picture}"/>
+                            <DataGridTextColumn Header="Название картины" Binding="{Binding NameOfArt}"/>
+                            <DataGridTextColumn Header="Годы" Binding="{Binding Years}"/>
+                            <DataGridTextColumn Header="Художник" Binding="{Binding Artist}"/>
+                            <DataGridTextColumn Header="Жанр" Binding="{Binding PieceOfArtHasGenre}"/>
+                            <DataGridTextColumn Header="Стиль" Binding="{Binding PieceOfArtHasStile}"/>
+                            <DataGridTextColumn Header="Техника" Binding="{Binding PieceOfArtHasTechnique}"/>
+                            <DataGridTextColumn Header="Материал" Binding="{Binding PieceOfArtHasMaterial}"/>
+                            <DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+
+              <!--  <TabItem Header="Artist">
+                    <DataGrid ItemsSource="{Binding Artist}" IsReadOnly="True"
+                          AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>-->
+
+            </TabControl>
+        </StackPanel>
+
+        
+
+
+    </Grid>
+</Window>
+

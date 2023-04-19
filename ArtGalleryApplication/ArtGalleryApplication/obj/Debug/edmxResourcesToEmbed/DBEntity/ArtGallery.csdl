@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Artist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="YearsOfLife" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PieceOfArt" Relationship="Self.FK__PieceOfAr__Artis__4BAC3F29" FromRole="Artist" ToRole="PieceOfArt" />
+  </EntityType>
+  <EntityType Name="Exhibition">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExhibitionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Place" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age_limit" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Exposition" Relationship="Self.FK__Expositio__Exhib__5FB337D6" FromRole="Exhibition" ToRole="Exposition" />
+  </EntityType>
+  <EntityType Name="Exposition">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Exhibition" Type="Int32" Nullable="false" />
+    <Property Name="PieceOfArt" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Exhibition1" Relationship="Self.FK__Expositio__Exhib__5FB337D6" FromRole="Exposition" ToRole="Exhibition" />
+    <NavigationProperty Name="PieceOfArt1" Relationship="Self.FK__Expositio__Piece__60A75C0F" FromRole="Exposition" ToRole="PieceOfArt" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GenreName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PieceOfArtHasGenre" Relationship="Self.FK__PieceOfAr__Genre__534D60F1" FromRole="Genre" ToRole="PieceOfArtHasGenre" />
+  </EntityType>
+  <EntityType Name="Material">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaterialName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PieceOfArtHasMaterial" Relationship="Self.FK__PieceOfAr__Mater__4F7CD00D" FromRole="Material" ToRole="PieceOfArtHasMaterial" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PicName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Picture1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PieceOfArt" Relationship="Self.FK__PieceOfAr__Pictu__4AB81AF0" FromRole="Picture" ToRole="PieceOfArt" />
+  </EntityType>
+  <EntityType Name="PieceOfArt">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Picture" Type="Int32" Nullable="false" />
+    <Property Name="NameOfArt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Years" Type="Int32" />
+    <Property Name="Artist" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Artist1" Relationship="Self.FK__PieceOfAr__Artis__4BAC3F29" FromRole="PieceOfArt" ToRole="Artist" />
+    <NavigationProperty Name="Exposition" Relationship="Self.FK__Expositio__Piece__60A75C0F" FromRole="PieceOfArt" ToRole="Exposition" />
+    <NavigationProperty Name="Picture1" Relationship="Self.FK__PieceOfAr__Pictu__4AB81AF0" FromRole="PieceOfArt" ToRole="Picture" />
+    <NavigationProperty Name="PieceOfArtHasMaterial" Relationship="Self.FK__PieceOfAr__Piece__4E88ABD4" FromRole="PieceOfArt" ToRole="PieceOfArtHasMaterial" />
+    <NavigationProperty Name="PieceOfArtHasGenre" Relationship="Self.FK__PieceOfAr__Piece__52593CB8" FromRole="PieceOfArt" ToRole="PieceOfArtHasGenre" />
+    <NavigationProperty Name="PieceOfArtHasTechnique" Relationship="Self.FK__PieceOfAr__Piece__5629CD9C" FromRole="PieceOfArt" ToRole="PieceOfArtHasTechnique" />
+    <NavigationProperty Name="PieceOfArtHasStile" Relationship="Self.FK__PieceOfAr__Piece__59FA5E80" FromRole="PieceOfArt" ToRole="PieceOfArtHasStile" />
+  </EntityType>
+  <EntityType Name="PieceOfArtHasGenre">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PieceOfArt" Type="Int32" />
+    <Property Name="Genre" Type="Int32" />
+    <NavigationProperty Name="Genre1" Relationship="Self.FK__PieceOfAr__Genre__534D60F1" FromRole="PieceOfArtHasGenre" ToRole="Genre" />
+    <NavigationProperty Name="PieceOfArt1" Relationship="Self.FK__PieceOfAr__Piece__52593CB8" FromRole="PieceOfArtHasGenre" ToRole="PieceOfArt" />
+  </EntityType>
+  <EntityType Name="PieceOfArtHasMaterial">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PieceOfArt" Type="Int32" />
+    <Property Name="Material" Type="Int32" />
+    <NavigationProperty Name="Material1" Relationship="Self.FK__PieceOfAr__Mater__4F7CD00D" FromRole="PieceOfArtHasMaterial" ToRole="Material" />
+    <NavigationProperty Name="PieceOfArt1" Relationship="Self.FK__PieceOfAr__Piece__4E88ABD4" FromRole="PieceOfArtHasMaterial" ToRole="PieceOfArt" />
+  </EntityType>
+  <EntityType Name="PieceOfArtHasStile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PieceOfArt" Type="Int32" />
+    <Property Name="Stile" Type="Int32" />
+    <NavigationProperty Name="PieceOfArt1" Relationship="Self.FK__PieceOfAr__Piece__59FA5E80" FromRole="PieceOfArtHasStile" ToRole="PieceOfArt" />
+    <NavigationProperty Name="Stile1" Relationship="Self.FK__PieceOfAr__Stile__5AEE82B9" FromRole="PieceOfArtHasStile" ToRole="Stile" />
+  </EntityType>
+  <EntityType Name="PieceOfArtHasTechnique">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PieceOfArt" Type="Int32" />
+    <Property Name="Technique" Type="Int32" />
+    <NavigationProperty Name="PieceOfArt1" Relationship="Self.FK__PieceOfAr__Piece__5629CD9C" FromRole="PieceOfArtHasTechnique" ToRole="PieceOfArt" />
+    <NavigationProperty Name="Technique1" Relationship="Self.FK__PieceOfAr__Techn__571DF1D5" FromRole="PieceOfArtHasTechnique" ToRole="Technique" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserInfo__Role__3B75D760" FromRole="Role" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="Stile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PieceOfArtHasStile" Relationship="Self.FK__PieceOfAr__Stile__5AEE82B9" FromRole="Stile" ToRole="PieceOfArtHasStile" />
+  </EntityType>
+  <EntityType Name="Technique">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TechniqueName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PieceOfArtHasTechnique" Relationship="Self.FK__PieceOfAr__Techn__571DF1D5" FromRole="Technique" ToRole="PieceOfArtHasTechnique" />
+  </EntityType>
+  <EntityType Name="User1">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserInfoID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK__User1__UserInfoI__3E52440B" FromRole="User1" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="UserInfoID" />
+    </Key>
+    <Property Name="UserInfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPatronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="Int32" />
+    <NavigationProperty Name="Role1" Relationship="Self.FK__UserInfo__Role__3B75D760" FromRole="UserInfo" ToRole="Role" />
+    <NavigationProperty Name="User1" Relationship="Self.FK__User1__UserInfoI__3E52440B" FromRole="UserInfo" ToRole="User1" />
+  </EntityType>
+  <Association Name="FK__PieceOfAr__Artis__4BAC3F29">
+    <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
+    <End Role="PieceOfArt" Type="Self.PieceOfArt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArt">
+        <PropertyRef Name="Artist" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Expositio__Exhib__5FB337D6">
+    <End Role="Exhibition" Type="Self.Exhibition" Multiplicity="1" />
+    <End Role="Exposition" Type="Self.Exposition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exhibition">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Exposition">
+        <PropertyRef Name="Exhibition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Expositio__Piece__60A75C0F">
+    <End Role="PieceOfArt" Type="Self.PieceOfArt" Multiplicity="1" />
+    <End Role="Exposition" Type="Self.Exposition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PieceOfArt">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Exposition">
+        <PropertyRef Name="PieceOfArt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PieceOfAr__Genre__534D60F1">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+    <End Role="PieceOfArtHasGenre" Type="Self.PieceOfArtHasGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArtHasGenre">
+        <PropertyRef Name="Genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PieceOfAr__Mater__4F7CD00D">
+    <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+    <End Role="PieceOfArtHasMaterial" Type="Self.PieceOfArtHasMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArtHasMaterial">
+        <PropertyRef Name="Material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PieceOfAr__Pictu__4AB81AF0">
+    <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+    <End Role="PieceOfArt" Type="Self.PieceOfArt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Picture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArt">
+        <PropertyRef Name="Picture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PieceOfAr__Piece__4E88ABD4">
+    <End Role="PieceOfArt" Type="Self.PieceOfArt" Multiplicity="0..1" />
+    <End Role="PieceOfArtHasMaterial" Type="Self.PieceOfArtHasMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PieceOfArt">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArtHasMaterial">
+        <PropertyRef Name="PieceOfArt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PieceOfAr__Piece__52593CB8">
+    <End Role="PieceOfArt" Type="Self.PieceOfArt" Multiplicity="0..1" />
+    <End Role="PieceOfArtHasGenre" Type="Self.PieceOfArtHasGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PieceOfArt">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArtHasGenre">
+        <PropertyRef Name="PieceOfArt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PieceOfAr__Piece__5629CD9C">
+    <End Role="PieceOfArt" Type="Self.PieceOfArt" Multiplicity="0..1" />
+    <End Role="PieceOfArtHasTechnique" Type="Self.PieceOfArtHasTechnique" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PieceOfArt">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArtHasTechnique">
+        <PropertyRef Name="PieceOfArt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PieceOfAr__Piece__59FA5E80">
+    <End Role="PieceOfArt" Type="Self.PieceOfArt" Multiplicity="0..1" />
+    <End Role="PieceOfArtHasStile" Type="Self.PieceOfArtHasStile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PieceOfArt">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArtHasStile">
+        <PropertyRef Name="PieceOfArt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PieceOfAr__Stile__5AEE82B9">
+    <End Role="Stile" Type="Self.Stile" Multiplicity="0..1" />
+    <End Role="PieceOfArtHasStile" Type="Self.PieceOfArtHasStile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArtHasStile">
+        <PropertyRef Name="Stile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PieceOfAr__Techn__571DF1D5">
+    <End Role="Technique" Type="Self.Technique" Multiplicity="0..1" />
+    <End Role="PieceOfArtHasTechnique" Type="Self.PieceOfArtHasTechnique" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technique">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PieceOfArtHasTechnique">
+        <PropertyRef Name="Technique" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserInfo__Role__3B75D760">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserInfo">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User1__UserInfoI__3E52440B">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+    <End Role="User1" Type="Self.User1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="UserInfoID" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="UserInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ArtGalleryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Artist" EntityType="Self.Artist" />
+    <EntitySet Name="Exhibition" EntityType="Self.Exhibition" />
+    <EntitySet Name="Exposition" EntityType="Self.Exposition" />
+    <EntitySet Name="Genre" EntityType="Self.Genre" />
+    <EntitySet Name="Material" EntityType="Self.Material" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" />
+    <EntitySet Name="PieceOfArt" EntityType="Self.PieceOfArt" />
+    <EntitySet Name="PieceOfArtHasGenre" EntityType="Self.PieceOfArtHasGenre" />
+    <EntitySet Name="PieceOfArtHasMaterial" EntityType="Self.PieceOfArtHasMaterial" />
+    <EntitySet Name="PieceOfArtHasStile" EntityType="Self.PieceOfArtHasStile" />
+    <EntitySet Name="PieceOfArtHasTechnique" EntityType="Self.PieceOfArtHasTechnique" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Stile" EntityType="Self.Stile" />
+    <EntitySet Name="Technique" EntityType="Self.Technique" />
+    <EntitySet Name="User1" EntityType="Self.User1" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+    <AssociationSet Name="FK__PieceOfAr__Artis__4BAC3F29" Association="Self.FK__PieceOfAr__Artis__4BAC3F29">
+      <End Role="Artist" EntitySet="Artist" />
+      <End Role="PieceOfArt" EntitySet="PieceOfArt" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Expositio__Exhib__5FB337D6" Association="Self.FK__Expositio__Exhib__5FB337D6">
+      <End Role="Exhibition" EntitySet="Exhibition" />
+      <End Role="Exposition" EntitySet="Exposition" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Expositio__Piece__60A75C0F" Association="Self.FK__Expositio__Piece__60A75C0F">
+      <End Role="PieceOfArt" EntitySet="PieceOfArt" />
+      <End Role="Exposition" EntitySet="Exposition" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PieceOfAr__Genre__534D60F1" Association="Self.FK__PieceOfAr__Genre__534D60F1">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="PieceOfArtHasGenre" EntitySet="PieceOfArtHasGenre" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PieceOfAr__Mater__4F7CD00D" Association="Self.FK__PieceOfAr__Mater__4F7CD00D">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="PieceOfArtHasMaterial" EntitySet="PieceOfArtHasMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PieceOfAr__Pictu__4AB81AF0" Association="Self.FK__PieceOfAr__Pictu__4AB81AF0">
+      <End Role="Picture" EntitySet="Picture" />
+      <End Role="PieceOfArt" EntitySet="PieceOfArt" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PieceOfAr__Piece__4E88ABD4" Association="Self.FK__PieceOfAr__Piece__4E88ABD4">
+      <End Role="PieceOfArt" EntitySet="PieceOfArt" />
+      <End Role="PieceOfArtHasMaterial" EntitySet="PieceOfArtHasMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PieceOfAr__Piece__52593CB8" Association="Self.FK__PieceOfAr__Piece__52593CB8">
+      <End Role="PieceOfArt" EntitySet="PieceOfArt" />
+      <End Role="PieceOfArtHasGenre" EntitySet="PieceOfArtHasGenre" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PieceOfAr__Piece__5629CD9C" Association="Self.FK__PieceOfAr__Piece__5629CD9C">
+      <End Role="PieceOfArt" EntitySet="PieceOfArt" />
+      <End Role="PieceOfArtHasTechnique" EntitySet="PieceOfArtHasTechnique" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PieceOfAr__Piece__59FA5E80" Association="Self.FK__PieceOfAr__Piece__59FA5E80">
+      <End Role="PieceOfArt" EntitySet="PieceOfArt" />
+      <End Role="PieceOfArtHasStile" EntitySet="PieceOfArtHasStile" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PieceOfAr__Stile__5AEE82B9" Association="Self.FK__PieceOfAr__Stile__5AEE82B9">
+      <End Role="Stile" EntitySet="Stile" />
+      <End Role="PieceOfArtHasStile" EntitySet="PieceOfArtHasStile" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PieceOfAr__Techn__571DF1D5" Association="Self.FK__PieceOfAr__Techn__571DF1D5">
+      <End Role="Technique" EntitySet="Technique" />
+      <End Role="PieceOfArtHasTechnique" EntitySet="PieceOfArtHasTechnique" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserInfo__Role__3B75D760" Association="Self.FK__UserInfo__Role__3B75D760">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserInfo" EntitySet="UserInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User1__UserInfoI__3E52440B" Association="Self.FK__User1__UserInfoI__3E52440B">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="User1" EntitySet="User1" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
